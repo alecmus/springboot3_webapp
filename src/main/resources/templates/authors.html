@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>String Boot 3 Web App</title>
+</head>
+<body>
+<h1>Author List</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+    <tr th:each="author : ${authors}">
+        <td th:text="${author.id}">ID placeholder</td>
+        <td th:text="${author.firstName}">First name placeholder</td>
+        <td th:text="${author.lastName}">Last name placeholder</td>
+    </tr>
+</table>
+
+</body>
+</html>
