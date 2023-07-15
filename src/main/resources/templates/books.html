@@ -1,3 +1,10 @@
+<!--
+    This template file is returned by the framework when a GET operation is called
+    on localhost:8080/books because the return value of the BookController.getBooks() method is
+    the String 'books', which gets mapped to this file (note that it is not necessary to
+    state the file extension).
+-->
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -13,6 +20,16 @@
         <th>Title</th>
         <th>Publisher</th>
     </tr>
+
+    <!--
+        Note that 'th:each' is a Thymeleaf attribute used for iteration much like
+        a for-each loop. Here we are iterating over the 'books' iterable (which is
+        of type Iterable<Book> because that's the type of the value we assigned to
+        the Model attribute whose key is 'books' in the BeerController.getBooks() method.
+
+        Also note that 'book' is therefore of type Book, which is why we can access
+        attributes like .id and .title directly from it.
+    -->
     <tr th:each="book : ${books}">
         <td th:text="${book.id}">ID placeholder</td>
         <td th:text="${book.title}">Title placeholder</td>

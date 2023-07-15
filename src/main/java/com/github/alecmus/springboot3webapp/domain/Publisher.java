@@ -4,8 +4,19 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
+/*
+ * The @Entity annotation is for mapping this class to a table, with each field
+ * corresponding to a column within that table. Each camelCase field is mapped
+ * to a snake_case column, e.g. publisherName is mapped to publisher_name.
+ */
 @Entity
 public class Publisher {
+    /*
+     * The @Id annotation marks this field as the primary key.
+     * The @GeneratedValue(strategy = GenerationType.AUTO) causes the framework
+     * to create this field's value for us automatically. The framework will ensure that
+     * each generated value is unique.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -15,6 +26,11 @@ public class Publisher {
     private String state;
     private String zipCode;
 
+    /*
+     * The @OneToMany annotation here indicates that one publisher has many books. Note that
+     * the 'mappedBy' is only required on one side of the relationship. As such, it is not necessary
+     * to add 'mappedBy = 'books'' to the publisher field in the Book class.
+     */
     @OneToMany(mappedBy = "publisher")
     private Set<Book> books;
 

@@ -9,12 +9,21 @@ import com.github.alecmus.springboot3webapp.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+/*
+ * Bootstrapping by implementing the CommandLineRunner
+ * and its run() method. It is run after the SpringBoot application has started.
+ */
 @Component
 public class BootstrapData implements CommandLineRunner {
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
     private final PublisherRepository publisherRepository;
 
+    /*
+     * When only one constructor exists, Spring automatically injects the
+     * required parameters. That means Spring will first make instances of the
+     * required parameters before making an instance of this class.
+     */
     public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository,
                          PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
@@ -22,6 +31,11 @@ public class BootstrapData implements CommandLineRunner {
         this.publisherRepository = publisherRepository;
     }
 
+    /*
+     * The run method of the CommandLineRunner is called automatically when the SpringBoot
+     * application starts. The args parameter contains the command line arguments
+     * passed to the SpringBoot application's entry point, i.e. the main() method.
+     */
     @Override
     public void run(String... args) throws Exception {
         Author eric = new Author();

@@ -5,14 +5,29 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+ * The @Entity annotation is for mapping this class to a table, with each field
+ * corresponding to a column within that table. Each camelCase field is mapped
+ * to a snake_case column, e.g. firstName is mapped to first_name.
+ */
 @Entity
 public class Author {
+    /*
+     * The @Id annotation marks this field as the primary key.
+     * The @GeneratedValue(strategy = GenerationType.AUTO) causes the framework
+     * to create this field's value for us automatically. The framework will ensure that
+     * each generated value is unique.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
 
+    /*
+     * The @ManyToMany annotation here indicates that the 'books' field has a many-to-many
+     * relationship with the 'authors' field in the Author entity.
+     */
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
